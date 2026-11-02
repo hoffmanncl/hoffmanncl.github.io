@@ -334,6 +334,8 @@ html[data-theme="dark"] ::selection {
   bottom: 0;
   left: 1em;
   right: 1em;
+  /* above the full-width nav (z-index 10), which would otherwise swallow clicks */
+  z-index: 11;
   pointer-events: none;
 }
 
