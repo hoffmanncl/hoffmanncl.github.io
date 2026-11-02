@@ -1,0 +1,13 @@
+{% comment %}
+  Contact line at the bottom of the About text.
+  The address is not written in clear in the HTML: it is stored reversed and
+  assembled in JavaScript, which defeats most simple e-mail harvesters.
+{% endcomment %}
+{% assign dev = false %}{% if jekyll.environment == "development" %}{% assign dev = true %}{% endif %}
+{% assign cv = site.static_files | where: "path", "/files/cv.pdf" | first %}
+<p class="home-contact">
+  <span><i class="fas fa-envelope" aria-hidden="true"></i>
+    <a class="js-email" href="#" data-u="nnamffoh.tnemelc" data-d="rf.liamtoh">clement.hoffmann [at] hotmail [dot] fr</a></span>
+  {% if cv %}<span><i class="fas fa-file-pdf" aria-hidden="true"></i> <a href="{{ base_path }}/files/cv.pdf">CV (long version)</a></span>
+  {% elsif dev %}<span class="todo-placeholder"><i class="fas fa-file-pdf" aria-hidden="true"></i> CV (TODO: add files/cv.pdf)</span>{% endif %}
+</p>

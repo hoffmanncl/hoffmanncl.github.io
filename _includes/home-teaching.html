@@ -1,0 +1,18 @@
+{% comment %} Teaching and supervision, most recent first. {% endcomment %}
+{% assign dev = false %}{% if jekyll.environment == "development" %}{% assign dev = true %}{% endif %}
+{% assign items = site.teaching | sort: "date" | reverse %}
+<section class="home-section" id="teaching">
+  <h2>Teaching &amp; Supervision</h2>
+  <ul class="item-list">
+    {% for t in items %}
+    <li>
+      <span class="item-list__date">{% if t.period %}{{ t.period }}{% elsif dev %}<span class="todo-placeholder">TODO</span>{% endif %}</span>
+      <span class="item-list__body">
+        <span class="item-list__title">{{ t.title }}</span>
+        <span class="item-list__meta">{{ t.type }} — {{ t.venue }}</span>
+        {% if t.content != "" %}<span class="item-list__desc">{{ t.content | markdownify | remove: "<p>" | remove: "</p>" }}</span>{% endif %}
+      </span>
+    </li>
+    {% endfor %}
+  </ul>
+</section>

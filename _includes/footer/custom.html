@@ -1,0 +1,33 @@
+<!-- start custom footer snippets -->
+
+<!-- Support for MathJax -->
+<script id="MathJax-script" defer src="https://cdn.jsdelivr.net/npm/mathjax@4.0.0/tex-mml-chtml.js"></script>
+
+<!-- end custom footer snippets -->
+
+<!-- Highlight the header link of the section currently in view (home page) -->
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  var links = Array.prototype.slice.call(document.querySelectorAll('.masthead__menu-item a[href*="#"]'));
+  var sections = links.map(function (a) { return document.getElementById(a.hash.slice(1)); }).filter(Boolean);
+  if (!sections.length) return;
+  function update() {
+    var y = window.scrollY + 120, current = null;
+    sections.forEach(function (s) { if (s.offsetTop <= y) current = s.id; });
+    if (window.innerHeight + window.scrollY >= document.body.scrollHeight - 2) current = sections[sections.length - 1].id;
+    links.forEach(function (a) { a.parentElement.classList.toggle("selected", a.hash === "#" + current); });
+  }
+  window.addEventListener("scroll", update, { passive: true });
+  update();
+});
+</script>
+
+<!-- Assemble obfuscated e-mail links (see _includes/home-contact.html) -->
+<script>
+document.querySelectorAll("a.js-email").forEach(function (a) {
+  var rev = function (s) { return s.split("").reverse().join(""); };
+  var address = rev(a.dataset.u) + "@" + rev(a.dataset.d);
+  a.href = "mailto:" + address;
+  a.textContent = address;
+});
+</script>

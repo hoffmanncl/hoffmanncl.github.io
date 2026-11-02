@@ -1,0 +1,23 @@
+{% comment %}
+  Publications, most recent first, grouped by year.
+  Entries with `standardization: true` are listed in their own subsection at the end.
+{% endcomment %}
+{% assign pubs = site.publications | sort: "date" | reverse %}
+{% assign papers = pubs | where_exp: "p", "p.standardization != true" %}
+{% assign submissions = pubs | where: "standardization", true %}
+{% assign years = papers | group_by_exp: "p", "p.date | date: '%Y'" %}
+<section class="home-section" id="publications">
+  <h2>Publications</h2>
+  {% for year in years %}
+  <h3 class="pub-year">{{ year.name }}</h3>
+  <ul class="pub-list">
+    {% for p in year.items %}{% include pub-entry.html p=p %}{% endfor %}
+  </ul>
+  {% endfor %}
+  {% if submissions.size > 0 %}
+  <h3 class="pub-group">Standardization submissions</h3>
+  <ul class="pub-list">
+    {% for p in submissions %}{% include pub-entry.html p=p %}{% endfor %}
+  </ul>
+  {% endif %}
+</section>

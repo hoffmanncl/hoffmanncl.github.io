@@ -1,0 +1,31 @@
+{% comment %} Talks, most recent first, in three groups (as in the CV): conference talks, invited seminars, other talks & posters. {% endcomment %}
+{% assign dev = false %}{% if jekyll.environment == "development" %}{% assign dev = true %}{% endif %}
+{% assign talks = site.talks | sort: "date" | reverse %}
+{% assign conference = talks | where: "type", "Conference talk" %}
+{% assign seminars = talks | where: "type", "Invited seminar" %}
+{% assign others = talks | where_exp: "t", "t.type != 'Conference talk' and t.type != 'Invited seminar'" %}
+<section class="home-section" id="talks">
+  <h2>Talks</h2>
+  {% for group in (1..3) %}
+    {% if group == 1 %}{% assign items = conference %}{% assign heading = "Conference talks" %}
+    {% elsif group == 2 %}{% assign items = seminars %}{% assign heading = "Invited seminars" %}
+    {% else %}{% assign items = others %}{% assign heading = "Other talks & posters" %}{% endif %}
+    {% if items.size == 0 %}{% continue %}{% endif %}
+  <h3 class="pub-group">{{ heading }}</h3>
+  <ul class="item-list">
+    {% for t in items %}
+    {% if t.incomplete and dev == false %}{% continue %}{% endif %}
+    <li>
+      <span class="item-list__date">{{ t.date | date: "%Y" }}</span>
+      <span class="item-list__body">
+        <span class="item-list__title">{{ t.title }}</span>
+        <span class="item-list__meta">{% if t.type == "Poster" %}Poster — {% endif %}{{ t.venue }}{% if t.location %}, {{ t.location }}{% elsif dev %} <span class="todo-placeholder">(location TODO)</span>{% endif %}
+          {% if t.link %} · <a href="{{ t.link }}">{{ t.link_label | default: "Talk page" }}</a>{% endif %}
+          {% if t.slides %} · <a href="{{ base_path }}{{ t.slides }}">Slides (PDF)</a>{% endif %}
+          {% if t.poster %} · <a href="{{ base_path }}{{ t.poster }}">Poster (PDF)</a>{% endif %}</span>
+      </span>
+    </li>
+    {% endfor %}
+  </ul>
+  {% endfor %}
+</section>

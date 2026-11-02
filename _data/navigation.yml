@@ -1,0 +1,12 @@
+# Links in the header. The home page is a single page with sections;
+# the links below scroll to them.
+
+main:
+  - title: "Publications"
+    url: /#publications
+
+  - title: "Talks"
+    url: /#talks
+
+  - title: "Teaching"
+    url: /#teaching

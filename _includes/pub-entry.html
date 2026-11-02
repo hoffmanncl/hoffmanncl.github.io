@@ -1,0 +1,24 @@
+{% comment %} One publication entry; expects include.p. {% endcomment %}
+{% assign p = include.p %}
+{% assign dev = false %}{% if jekyll.environment == "development" %}{% assign dev = true %}{% endif %}
+{% assign me = site.author.name %}
+    <li class="pub">
+      <span class="pub__title">{{ p.title }}</span>
+      {% if p.authors %}
+      <span class="pub__authors">{{ p.authors | join: ", " | replace: me, "<strong>__ME__</strong>" | replace: "__ME__", me }}</span>
+      {% elsif dev %}<span class="pub__authors todo-placeholder">Authors (TODO)</span>
+      {% endif %}
+      <span class="pub__venue">{% if p.preprint %}Preprint, under review{% else %}{{ p.venue }}{% endif %}</span>
+      {% if p.note %}<span class="pub__note">{{ p.note }}</span>{% endif %}
+      <span class="pub__links">
+        {% if p.eprint %}<a class="pub__btn" href="{{ p.eprint }}">ePrint</a>{% endif %}
+        {% if p.tches %}<a class="pub__btn" href="{{ p.tches }}">TCHES (Open Access)</a>{% endif %}
+        {% if p.doi %}<a class="pub__btn" href="{{ p.doi }}">DOI</a>{% endif %}
+        {% for l in p.links %}<a class="pub__btn" href="{{ l.url }}">{{ l.label }}</a>{% endfor %}
+        {% if p.pdf %}<a class="pub__btn" href="{{ p.pdf }}">PDF (Open Access)</a>{% endif %}
+        {% if p.code and p.code != "TODO" %}<a class="pub__btn" href="{{ p.code }}"><i class="fas fa-code" aria-hidden="true"></i> Code</a>
+        {% elsif p.code == "TODO" and dev %}<span class="pub__btn todo-placeholder">Code (TODO)</span>{% endif %}
+      </span>
+      {% if p.abstract %}<details class="pub__summary"><summary>Abstract</summary>{{ p.abstract }}</details>
+      {% elsif p.excerpt %}<details class="pub__summary"><summary>Summary</summary>{{ p.excerpt }}</details>{% endif %}
+    </li>

@@ -1,0 +1,372 @@
+---
+---
+
+/*
+ * This file controls what is imported from /_sass
+ *
+ * Note that the files are processed in the order they are imported, so they are partly
+   sorted by the dependencies. Also, the first two lines of the file are required by Jekyll.
+ */
+
+@import
+    "vendor/breakpoint/breakpoint",
+
+    "themes",
+    "theme/{{ site.site_theme | default: 'default' | append: '_light' }}",
+    "theme/{{ site.site_theme | default: 'default' | append: '_dark' }}",
+
+    "include/mixins",
+    "vendor/susy/susy",
+
+    "layout/reset",
+    "layout/base",
+
+    "include/utilities",
+    "layout/tables",
+    "layout/buttons",
+    "layout/notices",
+    "layout/masthead",
+    "layout/navigation",
+    "layout/footer",
+    "syntax",
+
+    "layout/forms",
+
+    "layout/page",
+    "layout/archive",
+    "layout/sidebar"
+;
+/* ==========================================================================
+   Single-page home: sections, publication list, compact footer
+   ========================================================================== */
+
+html {
+  scroll-behavior: smooth;
+}
+
+.home-section {
+  margin-top: 2.5em;
+  scroll-margin-top: 90px;
+}
+
+.pub-year {
+  margin: 1.5em 0 0.5em;
+  font-size: 1em;
+  color: var(--global-text-color-light);
+  border-bottom: none;
+}
+
+.pub-list,
+.item-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.pub {
+  margin-bottom: 1.1em;
+
+  &__title {
+    display: block;
+    font-weight: bold;
+  }
+
+  &__authors,
+  &__venue {
+    display: block;
+    font-size: 0.9em;
+  }
+
+  &__venue {
+    font-style: italic;
+    color: var(--global-text-color-light);
+  }
+
+  &__links {
+    display: block;
+    margin-top: 0.25em;
+  }
+
+  &__btn {
+    display: inline-block;
+    margin: 0 0.4em 0.3em 0;
+    padding: 0.05em 0.6em;
+    font-size: 0.75em;
+    border: 1px solid var(--global-border-color);
+    border-radius: 4px;
+    text-decoration: none;
+  }
+
+  &__summary {
+    font-size: 0.85em;
+    color: var(--global-text-color-light);
+
+    summary {
+      cursor: pointer;
+    }
+  }
+}
+
+.item-list li {
+  display: flex;
+  gap: 1em;
+  margin-bottom: 0.8em;
+}
+
+.item-list__date {
+  flex: 0 0 4.5em;
+  color: var(--global-text-color-light);
+  font-size: 0.9em;
+}
+
+.item-list__title {
+  display: block;
+  font-weight: bold;
+}
+
+.item-list__meta,
+.item-list__desc {
+  display: block;
+  font-size: 0.9em;
+  color: var(--global-text-color-light);
+}
+
+/* Missing information: only rendered in local preview (jekyll serve) */
+.todo-placeholder {
+  opacity: 0.5;
+  font-style: italic;
+}
+
+/* Compact footer in the normal page flow (the template's is fixed to the bottom) */
+body {
+  padding-bottom: 0;
+}
+
+.page__footer {
+  position: static;
+  margin-top: 2em;
+  background: transparent;
+  font-size: 0.75em;
+
+  footer {
+    margin-top: 0.5em;
+    padding-bottom: 0.5em;
+  }
+}
+
+/* Let long sidebar entries (e.g. employer) wrap instead of being cut off */
+.author__urls li {
+  white-space: normal;
+}
+
+/* ==========================================================================
+   Blue accents (colors defined in _sass/theme/_blue_light.scss / _blue_dark.scss)
+   ========================================================================== */
+
+/* Header: blue gradient band with white links */
+.masthead {
+  background: var(--accent-gradient);
+
+  &::after {
+    display: none;
+  }
+}
+
+.masthead__menu-item a,
+.masthead__menu-item a:hover,
+#theme-toggle,
+#theme-toggle i {
+  color: #fff;
+}
+
+.masthead__menu-item a:hover {
+  opacity: 0.8;
+}
+
+.masthead__menu-item.selected a,
+.masthead__menu-item.selected a:hover {
+  color: #fff;
+  border-bottom-color: #fff;
+  /* section links stay clickable while highlighted */
+  pointer-events: auto;
+  cursor: pointer;
+}
+
+.greedy-nav button .navicon,
+.greedy-nav button .navicon::before,
+.greedy-nav button .navicon::after {
+  background: #fff;
+}
+
+.greedy-nav .hidden-links a,
+.greedy-nav .hidden-links a:hover {
+  color: var(--global-text-color);
+}
+
+/* Sidebar */
+.author__name {
+  color: var(--accent-strong);
+}
+
+.author__avatar img {
+  border-color: var(--accent);
+}
+
+/* Section titles with a gradient underline */
+.page__content .home-section h2 {
+  color: var(--accent-strong);
+  border-bottom: none;
+  background: var(--accent-gradient) left bottom / 100% 3px no-repeat;
+}
+
+/* Year labels as pills */
+.pub-year {
+  display: inline-block;
+  padding: 0.1em 0.8em;
+  border-radius: 999px;
+  background: var(--accent-soft);
+  color: var(--accent-strong);
+}
+
+/* Publication cards: accent bar on the left */
+.pub {
+  padding-left: 0.9em;
+  border-left: 3px solid var(--accent-soft);
+  transition: border-color 0.2s ease-in-out;
+
+  &:hover {
+    border-left-color: var(--accent);
+  }
+
+  &__btn {
+    background: var(--accent-soft);
+    border-color: transparent;
+    color: var(--accent-strong);
+
+    &:hover {
+      background: var(--accent);
+      color: #fff;
+    }
+  }
+
+  &__summary summary {
+    color: var(--accent);
+  }
+}
+
+.item-list__date {
+  color: var(--accent);
+  font-weight: bold;
+}
+
+/* Footer: thin gradient line on top */
+.page__footer {
+  border-top: none;
+  background: var(--accent-gradient) left top / 100% 3px no-repeat;
+}
+
+.greedy-nav,
+.greedy-nav button,
+.greedy-nav .visible-links .masthead__menu-item {
+  background: transparent;
+}
+
+.page__content .pub__btn,
+.page__content .pub__btn:hover {
+  text-decoration: none;
+}
+
+.author__content {
+  margin-bottom: 0.8em;
+}
+
+/* Contact line at the bottom of the About text */
+.home-contact {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.5em 1.5em;
+  padding: 0.7em 1em;
+  border-radius: 6px;
+  background: var(--accent-soft);
+
+  i {
+    color: var(--accent);
+    margin-right: 0.3em;
+  }
+}
+
+.pub__note {
+  display: block;
+  font-size: 0.9em;
+  color: var(--accent-strong);
+}
+
+/* Text selection visible in both light and dark modes */
+::selection {
+  color: #fff;
+  background: #1d5fbf;
+}
+
+html[data-theme="dark"] ::selection {
+  color: #0f1724;
+  background: #7cb4ff;
+}
+
+/* Sub-group headings (talk categories, standardization submissions) */
+.pub-group {
+  margin: 1.8em 0 0.6em;
+  font-size: 0.85em;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--accent-strong);
+}
+
+/* Header tools (last update + theme toggle): same horizontal box as the page
+   content, so the toggle sits at the right edge of the text column */
+.masthead__inner-wrap {
+  position: relative;
+}
+
+.masthead__tools {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 1em;
+  right: 1em;
+  pointer-events: none;
+}
+
+.masthead__tools-inner {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 1em;
+  /* leave room for the menu button on small screens */
+  padding-right: 3.5rem;
+
+  @include breakpoint($large) {
+    @include span(10 of 12 last);
+    @include prefix(0.5 of 12);
+    @include suffix(2 of 12);
+  }
+
+  > * {
+    pointer-events: auto;
+  }
+}
+
+.masthead__updated {
+  font-size: 0.75em;
+  color: rgba(255, 255, 255, 0.85);
+  display: none;
+
+  @include breakpoint($large) {
+    display: inline;
+  }
+}
+
+#theme-toggle {
+  cursor: pointer;
+}

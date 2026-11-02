@@ -1,0 +1,65 @@
+/* ==========================================================================
+   BLUE THEME - DARK VERSION
+   ========================================================================== */
+/* Color codes used for the theme */
+$primary-color              : #6aa8ff;
+$background                 : #0f1724;
+$background-light           : #172235;
+$background-lighter        : #1f2e47;
+$text                      : #e4ecf8;
+$text-muted                : #a9bad3;
+$link                      : #7cb4ff;
+$link-dark                 : #a6cbff;
+$link-light                : #5a96ec;
+$footer                    : #0a101a;
+$border                    : #253750;
+$border-light              : #33496a;
+
+/* Color codes used for the site */
+$danger-color               : #e74c3c;
+$info-color                 : #7cb4ff;
+$notice-color               : #6aa8ff;
+$success-color              : #2ecc71;
+$warning-color              : #f39c12;
+
+/* Other basic settings for the template */
+$border-radius              : 4px;
+$box-shadow                 : 0 1px 1px rgba(0, 0, 0, 0.125);
+$global-transition          : all 0.2s ease-in-out;
+$masthead-height            : 70px;
+$navicon-width              : 28px;
+$navicon-height             : 4px;
+$sidebar-link-max-width     : 250px;
+$sidebar-screen-min-width   : 1024px;
+
+/* Dark theme for the site */
+html[data-theme="dark"] {
+  --global-base-color                 : #{$primary-color};
+  --global-bg-color                   : #{$background};
+  --global-footer-bg-color            : #{$footer};
+  --global-border-color               : #{$border};
+  --global-dark-border-color          : #{$border-light};
+  --global-code-background-color      : #{$background-light};
+  --global-code-text-color            : #{$text-muted};
+  --global-fig-caption-color          : #{$text-muted};
+  --global-link-color                 : #{$link};
+  --global-link-color-hover           : #{$link-dark};
+  --global-link-color-visited         : #{$link-light};
+  --global-masthead-link-color        : #{$text};
+  --global-masthead-link-color-hover  : #{$primary-color};
+  --global-text-color                 : #{$text};
+  --global-text-color-light           : #{$text-muted};
+  --global-thead-color                : #{$background-lighter};
+  --accent                            : #6aa8ff;
+  --accent-strong                     : #a6cbff;
+  --accent-soft                       : #1c2c45;
+  --accent-gradient                   : linear-gradient(90deg, #0b2a5e 0%, #1a4f9c 55%, #2f7fc8 100%);
+
+}
+
+/* Footer styling for dark mode */
+html[data-theme="dark"] {
+  footer {
+    color: #{$text};
+  }
+}
