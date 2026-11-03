@@ -42,7 +42,8 @@ document.querySelectorAll("a.js-email").forEach(function (a) {
     sw.setAttribute("aria-pressed", root.getAttribute("data-theme") === "dark" ? "true" : "false");
   };
   sync();
-  // Runs before the next paint: switch all colors at once (see .theme-switching in main.scss)
+  /* Runs before the next paint: switch all colors at once (see .theme-switching in main.scss).
+     Use block comments only in inline scripts: the production build puts the HTML on one line. */
   new MutationObserver(function () {
     sync();
     root.classList.add("theme-switching");
