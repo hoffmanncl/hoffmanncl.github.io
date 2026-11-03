@@ -31,3 +31,23 @@ document.querySelectorAll("a.js-email").forEach(function (a) {
   a.textContent = address;
 });
 </script>
+
+<!-- Light/dark button: accessible state + no flicker while the theme changes -->
+<script>
+(function () {
+  var sw = document.getElementById("theme-toggle");
+  if (!sw) return;
+  var root = document.documentElement, timer;
+  var sync = function () {
+    sw.setAttribute("aria-pressed", root.getAttribute("data-theme") === "dark" ? "true" : "false");
+  };
+  sync();
+  // Runs before the next paint: switch all colors at once (see .theme-switching in main.scss)
+  new MutationObserver(function () {
+    sync();
+    root.classList.add("theme-switching");
+    clearTimeout(timer);
+    timer = setTimeout(function () { root.classList.remove("theme-switching"); }, 450);
+  }).observe(root, { attributes: true, attributeFilter: ["data-theme"] });
+})();
+</script>

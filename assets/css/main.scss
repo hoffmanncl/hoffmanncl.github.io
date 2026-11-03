@@ -173,9 +173,7 @@ body {
 }
 
 .masthead__menu-item a,
-.masthead__menu-item a:hover,
-#theme-toggle,
-#theme-toggle i {
+.masthead__menu-item a:hover {
   color: #fff;
 }
 
@@ -369,6 +367,56 @@ html[data-theme="dark"] ::selection {
   }
 }
 
-#theme-toggle {
+/* Light/dark button: shows the icon of the current mode (sun or moon), no animation */
+.theme-toggle {
+  padding: 0.2em 0.3em;
+  border: 0;
+  background: transparent;
+  color: #fff;
+  font-size: 0.9rem;
   cursor: pointer;
+
+  &:hover {
+    opacity: 0.8;
+  }
+}
+
+/* (scoped to .theme-toggle to win over Font Awesome's own display rule) */
+.theme-toggle .theme-toggle__icon--dark,
+html[data-theme="dark"] .theme-toggle .theme-toggle__icon--light {
+  display: none;
+}
+
+html[data-theme="dark"] .theme-toggle .theme-toggle__icon--dark {
+  display: inline-block;
+}
+
+/* While the theme changes, freeze every other transition so that the whole
+   page switches at once instead of fading element by element (flicker) */
+html.theme-switching *,
+html.theme-switching *::before,
+html.theme-switching *::after {
+  transition: none !important;
+}
+
+/* ==========================================================================
+   Warm violet touches (--accent-warm*, defined in the theme files)
+   ========================================================================== */
+
+/* Publication cards: violet bar on hover */
+.pub:hover {
+  border-left-color: var(--accent-warm);
+}
+
+/* Link buttons turn violet on hover */
+.pub__btn:hover,
+.page__content .pub__btn:hover {
+  background: var(--accent-warm);
+  color: var(--accent-on-warm);
+}
+
+/* Avatar ring: blue-to-violet */
+.author__avatar img {
+  border-color: transparent;
+  background: var(--accent-gradient) border-box;
 }

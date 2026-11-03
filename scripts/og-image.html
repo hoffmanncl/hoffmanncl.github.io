@@ -1,0 +1,66 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&display=block" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; margin: 0; }
+  html, body { width: 1200px; height: 630px; overflow: hidden; }
+  body {
+    font-family: "Inter", "Ubuntu", "DejaVu Sans", sans-serif;
+    color: #fff;
+    background: linear-gradient(120deg, #0a2f6b 0%, #0d3b85 30%, #1d5fbf 70%, #3aa0e8 100%);
+    position: relative;
+  }
+  /* faint lattice of points, a nod to lattice-based cryptography */
+  .lattice {
+    position: absolute; inset: 0;
+    background-image: radial-gradient(rgba(255,255,255,0.16) 2px, transparent 2.5px);
+    background-size: 42px 42px;
+    transform: skewX(-18deg) scale(1.3);
+    -webkit-mask-image: linear-gradient(90deg, transparent 35%, #000 100%);
+            mask-image: linear-gradient(90deg, transparent 35%, #000 100%);
+  }
+  .wrap {
+    position: relative; height: 100%;
+    display: flex; align-items: center; gap: 64px;
+    padding: 0 80px;
+  }
+  .photo {
+    flex: 0 0 300px; height: 300px; border-radius: 50%;
+    border: 6px solid rgba(255,255,255,0.9);
+    box-shadow: 0 18px 50px rgba(0,0,0,0.35);
+    background: url("../images/profile.jpg") center/cover;
+  }
+  h1 { font-size: 66px; font-weight: 800; letter-spacing: -0.5px; line-height: 1.05; }
+  h1 span { font-weight: 500; }
+  .role { margin-top: 18px; font-size: 30px; font-weight: 500; opacity: 0.95; }
+  .org { margin-top: 6px; font-size: 24px; opacity: 0.8; }
+  .tags { margin-top: 30px; display: flex; flex-wrap: wrap; gap: 10px; flex-wrap: nowrap; }
+  .tags span {
+    font-size: 18px; font-weight: 500; padding: 6px 15px; white-space: nowrap; border-radius: 999px;
+    background: rgba(255,255,255,0.14); border: 1px solid rgba(255,255,255,0.35);
+  }
+  .url {
+    position: absolute; right: 56px; bottom: 36px;
+    font-size: 22px; font-weight: 500; opacity: 0.85; letter-spacing: 0.3px;
+  }
+  .bar { position: absolute; left: 0; right: 0; bottom: 0; height: 8px;
+    background: linear-gradient(90deg, #0d3b85, #1d5fbf 55%, #3aa0e8); filter: brightness(1.4); }
+</style></head>
+<body>
+  <div class="lattice"></div>
+  <div class="wrap">
+    <div class="photo"></div>
+    <div>
+      <h1><span>Clément</span> HOFFMANN</h1>
+      <div class="role">Postdoctoral researcher in cryptography</div>
+      <div class="org">NTT Social Informatics Laboratories · Tokyo</div>
+      <div class="tags">
+        <span>Side-channel analysis</span>
+        <span>Lattice-based cryptography</span>
+        <span>Post-quantum</span>
+      </div>
+    </div>
+  </div>
+  <div class="url">hoffmanncl.github.io</div>
+  <div class="bar"></div>
+</body></html>

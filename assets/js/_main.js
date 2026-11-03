@@ -43,7 +43,14 @@ function setTheme(theme) {
 function toggleTheme() {
   const current_theme = $("html").attr("data-theme");
   const new_theme = current_theme === "dark" ? "light" : "dark";
-  localStorage.setItem("theme", new_theme);
+  // Only remember a choice that differs from the browser preference, so that
+  // switching back to it means "follow the browser" again
+  const system_theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? "dark" : "light";
+  if (new_theme === system_theme) {
+    localStorage.removeItem("theme");
+  } else {
+    localStorage.setItem("theme", new_theme);
+  }
   setTheme(new_theme);
   redrawPlotly();
 }

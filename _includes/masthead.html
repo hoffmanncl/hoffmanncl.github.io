@@ -30,7 +30,10 @@
     <div class="masthead__tools">
       <div class="masthead__tools-inner">
         <span class="masthead__updated">Last updated {{ site.time | date: "%B %Y" }}</span>
-        <a id="theme-toggle" role="button" aria-labelledby="theme-icon"><i id="theme-icon" class="fa-solid fa-sun" aria-hidden="true" title="toggle theme"></i></a>
+        <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Toggle light / dark mode" title="Light / dark mode">
+          <i class="fa-solid fa-sun theme-toggle__icon--light" aria-hidden="true"></i>
+          <i class="fa-solid fa-moon theme-toggle__icon--dark" aria-hidden="true"></i>
+        </button>
       </div>
     </div>
   </div>
