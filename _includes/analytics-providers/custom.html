@@ -1,3 +1,25 @@
-<!-- start custom analytics snippet -->
-
-<!-- end custom analytics snippet -->
+{% comment %}
+  GoatCounter (cookie-free visit statistics): https://hoffmanncl.goatcounter.com
+  Only in the published site, so that local previews are not counted.
+  Inline scripts: block comments only, the production build puts the HTML on one line.
+{% endcomment %}
+{% if jekyll.environment == "production" %}
+<script data-goatcounter="https://hoffmanncl.goatcounter.com/count"
+        async src="https://gc.zgo.at/count.js"></script>
+<script>
+  /* Count PDF downloads (slides, posters, CV) as events, e.g. "files/cv.pdf" */
+  (function () {
+    function track(e) {
+      var a = e.target.closest && e.target.closest('a[href$=".pdf"]');
+      if (!a || !window.goatcounter || !window.goatcounter.count) return;
+      window.goatcounter.count({
+        path: a.pathname.replace(/^\//, ""),
+        title: a.textContent.trim() || a.pathname,
+        event: true
+      });
+    }
+    document.addEventListener("click", track);
+    document.addEventListener("auxclick", track);
+  })();
+</script>
+{% endif %}
